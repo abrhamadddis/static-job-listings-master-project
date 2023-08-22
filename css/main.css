@@ -534,7 +534,66 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.mt-0 {
+  margin-top: 0px;
+}
+
+.h-40 {
+  height: 10rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.bg-neutral-lightGrayishCyan {
+  --tw-bg-opacity: 1;
+  background-color: hsl(180 31% 95% / var(--tw-bg-opacity));
+}
+
+.bg-bgHeaderDesktop {
+  background-image: url('../images/bg-header-desktop.svg');
+}
+
+.bg-bgHeaderMobile {
+  background-image: url('../images/bg-header-mobile.svg');
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  .md\:bg-bgHeaderMobile {
+    background-image: url('../images/bg-header-mobile.svg');
+  }
+
+  .md\:bg-bgHeaderDesktop {
+    background-image: url('../images/bg-header-desktop.svg');
+  }
+
+  .md\:bg-top {
+    background-position: top;
+  }
+
+  @media (min-width: 976px) {
+    .md\:lg\:bottom-0 {
+      bottom: 0px;
+    }
+  }
+}
+
+@media (min-width: 976px) {
+  .lg\:bottom-0 {
+    bottom: 0px;
+  }
 }

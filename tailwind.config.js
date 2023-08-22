@@ -9,6 +9,10 @@ module.exports = {
       xl: "1440px",
     },
     extend: {
+      backgroundImage: {
+        bgHeaderDesktop: "url('../images/bg-header-desktop.svg')" ,
+        bgHeaderMobile: "url('../images/bg-header-mobile.svg')",
+      },
       colors: {
         primary:{
           desaturatedDarkCyan : "hsl(180, 29%, 50%)", 
