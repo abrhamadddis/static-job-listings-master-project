@@ -24,21 +24,64 @@
   </head>
   <body class="bg-neutral-lightGrayishCyan" >
     <!-- header-->
-    <header class=" h-40 w-full bg-neutral-lightGrayishCyan bg-bgHeaderMobile md:bg-bgHeaderDesktop">
+    <header class=" h-36 w-full bg-primary-desaturatedDarkCyan bg-bgHeaderMobile bg-cover md:bg-bgHeaderDesktop">
     
     </header>
 
     <!--main container-->
-    <div class=" container mx-auto flex flex-col">
+    <div class=" container flex flex-col mx-auto ">
       <!--search bar-->
-      <div class="bg-white">
-        <h1> test element </h1>
+      <div class="bg-white w-full rounded-md min-h-min -mt-7 pr-2 py-3">
+        <h1>serch bar</h1>
       </div>
-      <!-- jobs card-->
-      <div>
-
+      <!-- All cards-->
+      <div  class="bg-neutral-lightGrayishCyan mt-9 ">
+        <!--first card-->
+        <div class=" flex flex-col px-10 w-full justify-center rounded-md bg-white md:flex-row md:justify-between ">
+          <!--left column-->
+          <div class="flex flex-col  md:flex-row   bg-slate-400">
+            <!--image of job-->
+            <div class="mr-7">
+              <img src="../images/photosnap.svg" alt="photoshnap">
+            </div>
+            <!--job description-->
+            <div class="flex flex-col justify-center">
+              <!--company title and tags-->
+              <div class="flex">
+                <div class="mr-1">
+                  <h3>Photoshop</h3>
+                </div>
+                <div>
+                  <span>new</span>
+                  <span>FEATURED</span>
+                </div>
+              </div>
+              <!--job title-->
+              <div>
+                <h2>Senior developer</h2>
+              </div>
+              <!--date time and location-->
+              <div>
+                <span>ad agi</span>
+                <span>Full-Time</span>
+                <span>USA only</span>
+              </div>
+            </div>
+          </div>
+          <!--right column-->
+          <div class="bg-slate-400  i flex justify-start items-center gap-2 md:justify-end">
+            <div>
+              <h1>skil one</h1>
+            </div>
+            <div>
+              <h1>skill two</h1>
+            </div>
+          </div>
+        </div>
       </div>
+      
     </div>
+
 
     <!-- <div class="attribution">
       Challenge by
