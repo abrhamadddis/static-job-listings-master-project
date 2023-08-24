@@ -1,15 +1,1 @@
-{ 
-  "name": "static-job-listings-master-project",
-  "version": "1.0.0",
-  "description": "job listings page that has a filter fetures",
-  "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./css/main.css",
-    "watch": "tailwindcss -i ./src/input.css -o ./css/main.css --watch"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "tailwindcss": "^3.3.3"
-  }
-}
+{"name":"static-job-listings-master-project","version":"1.0.0","description":"job listings page that has a filter fetures","scripts":{"build":"tailwindcss -i ./src/input.css -o ./css/main.css","watch":"tailwindcss -i ./src/input.css -o ./css/main.css --watch"},"keywords":[],"author":"","license":"ISC","devDependencies":{"tailwindcss":"^3.3.3"}}
