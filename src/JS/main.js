@@ -2,153 +2,115 @@ fetch('data.json')
   .then(response => response.json())
   .then(data => {
     const container = document.getElementById('dataContainer');
-    const firstItem = data[0];
+    
+    data.forEach(card => {
+      const { logo, company, isnew, featured, position, postedAt, contract, location, languages, tools } = card;
 
-    // Create the main container div
-    const mainContainer = document.createElement('div');
-    mainContainer.className = 'bg-neutral-lightGrayishCyan mt-12';
+      // Create card container
+      const cardContainer = document.createElement('div');
+      cardContainer.className = 'flex flex-col px-10 py-8 my-12 w-full justify-center rounded-md bg-white md:flex-row md:justify-between shadow-lg border-l-4 border-primary-desaturatedDarkCyan';
 
-    // Create the card div
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'flex flex-col px-10 py-4 w-full justify-center rounded-md bg-white md:flex-row md:justify-between';
+      // Create left column
+      const leftColumn = document.createElement('div');
+      leftColumn.className = 'flex flex-col md:flex-row';
+      cardContainer.appendChild(leftColumn);
 
-    // Create the left column div
-    const leftColumnDiv = document.createElement('div');
-    leftColumnDiv.className = 'flex flex-col md:flex-row';
+      // Image of job
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'mr-7 -mt-14 w-16 md:mt-0 md:w-24';
+      const image = document.createElement('img');
+      image.src = logo;
+      image.alt = company;
+      imageContainer.appendChild(image);
+      leftColumn.appendChild(imageContainer);
 
-    // Create the image div
-    const imageDiv = document.createElement('div');
-    imageDiv.className = 'mr-7 -mt-12 w-16 md:mt-0 md:w-24';
+      // Job description
+      const jobDescription = document.createElement('div');
+      jobDescription.className = 'flex flex-col justify-center';
+      leftColumn.appendChild(jobDescription);
 
-    // Create the image element
-    const image = document.createElement('img');
-    image.src = firstItem.logo;
-    image.alt = firstItem.company;
+      // Company title and tags
+      const companyTags = document.createElement('div');
+      companyTags.className = 'flex flex-wrap';
+      jobDescription.appendChild(companyTags);
 
-    // Append the image to the image div
-    imageDiv.appendChild(image);
+      const companyTitle = document.createElement('h3');
+      companyTitle.className = 'text-primary-desaturatedDarkCyan font-bold mr-4 text-lg md:text-lg';
+      companyTitle.textContent = company;
+      companyTags.appendChild(companyTitle);
 
-    // Append the image div to the left column div
-    leftColumnDiv.appendChild(imageDiv);
+      // New and featured tags
+      if (isnew) {
+        const newTag = document.createElement('span');
+        newTag.className = 'bg-primary-desaturatedDarkCyan uppercase text-white font-bold rounded-full px-4 pt-2 pb-1 text-sm mr-2';
+        newTag.textContent = 'NEW';
+        companyTags.appendChild(newTag);
+      }
 
-    // Create the job description div
-    const jobDescriptionDiv = document.createElement('div');
-    jobDescriptionDiv.className = 'flex flex-col justify-center';
+      if (featured) {
+        const featuredTag = document.createElement('span');
+        featuredTag.className = 'bg-neutral-950 uppercase text-white font-bold rounded-full px-4 pt-2 pb-1 text-sm mr-2';
+        featuredTag.textContent = 'FEATURED';
+        companyTags.appendChild(featuredTag);
+      }
 
-    // Create the company title and tags div
-    const companyTitleTagsDiv = document.createElement('div');
-    companyTitleTagsDiv.className = 'flex';
+      // Job title
+      const jobTitle = document.createElement('h2');
+      jobTitle.className = 'font-sans font-bold hover:text-primary-desaturatedDarkCyan px-2 py-1 rounded-xl text-xl self-start';
+      jobTitle.textContent = position;
+      jobDescription.appendChild(jobTitle);
 
-    // Create the company title element
-    const companyTitle = document.createElement('h3');
-    companyTitle.className = 'text-primary-desaturatedDarkCyan font-bold mr-4 md:text-md';
-    companyTitle.textContent = firstItem.company;
+      // Date, time, and location
+      const dateTimeLocation = document.createElement('div');
+      dateTimeLocation.className = 'flex gap-2 text-neutral-darkGrayishCyan items-center';
+      jobDescription.appendChild(dateTimeLocation);
 
-    // Append the company title element to the company title and tags div
-    companyTitleTagsDiv.appendChild(companyTitle);
+      const postedDate = document.createElement('span');
+      postedDate.textContent = postedAt;
+      dateTimeLocation.appendChild(postedDate);
 
-    // Create the new tag element
-    const newTag = document.createElement('span');
-    newTag.className = 'bg-primary-desaturatedDarkCyan uppercase text-white font-bold rounded-full px-4 pt-1 text-sm mr-2';
-    newTag.textContent = 'NEW';
+      const dotSeparator = document.createElement('span');
+      dotSeparator.className = 'pb-2';
+      dotSeparator.textContent = '.';
+      dateTimeLocation.appendChild(dotSeparator);
 
-    // Append the new tag element to the company title and tags div
-    companyTitleTagsDiv.appendChild(newTag);
+      const jobContract = document.createElement('span');
+      jobContract.textContent = contract;
+      dateTimeLocation.appendChild(jobContract);
 
-    // Create the featured tag element
-    const featuredTag = document.createElement('span');
-    featuredTag.className = 'bg-neutral-950 uppercase rounded-full text-white font-bold px-4 pt-1 text-sm mr-2';
-    featuredTag.textContent = 'FEATURED';
+      const dotSeparator2 = document.createElement('span');
+      dotSeparator2.className = 'pb-2';
+      dotSeparator2.textContent = '.';
+      dateTimeLocation.appendChild(dotSeparator2);
 
-    // Append the featured tag element to the company title and tags div
-    companyTitleTagsDiv.appendChild(featuredTag);
+      const jobLocation = document.createElement('span');
+      jobLocation.textContent = location;
+      dateTimeLocation.appendChild(jobLocation);
 
-    // Append the company title and tags div to the job description div
-    jobDescriptionDiv.appendChild(companyTitleTagsDiv);
+      // Right column
+      const rightColumn = document.createElement('div');
+      rightColumn.className = 'flex justify-start items-center  md:justify-end';
+      cardContainer.appendChild(rightColumn);
 
-    // Create the job title div
-    const jobTitleDiv = document.createElement('div');
-    jobTitleDiv.className = '-ml-2';
+      const jobTags = document.createElement('div');
+      rightColumn.appendChild(jobTags);
 
-    // Create the job title element
-    const jobTitle = document.createElement('h2');
-    jobTitle.className = 'font-sans font-bold text-primary-desaturatedDarkCyan px-2 py-1 rounded-xl text-xl self-start';
-    jobTitle.textContent = firstItem.position;
+      languages.forEach(language => {
+        const languageTag = document.createElement('span');
+        languageTag.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mb-2 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan mr-4';
+        languageTag.textContent = language;
+        jobTags.appendChild(languageTag);
+      });
 
-    // Append the job title element to the job title div
-    jobTitleDiv.appendChild(jobTitle);
+      tools.forEach(tool => {
+        const toolTag = document.createElement('span');
+        toolTag.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan mr-4';
+        toolTag.textContent = tool;
+        jobTags.appendChild(toolTag);
+      });
 
-    // Append the job title div to the job description div
-    jobDescriptionDiv.appendChild(jobTitleDiv);
-
-    // Create the date time and location div
-    const dateTimeLocationDiv = document.createElement('div');
-    dateTimeLocationDiv.className = 'flex justify-between text-neutral-darkGrayishCyan';
-
-    // Create the date time and location elements
-    const date = document.createElement('span');
-    date.textContent = firstItem.postedAt;
-
-    const dotSeparator1 = document.createElement('span');
-    dotSeparator1.textContent = '.';
-
-    const employmentType = document.createElement('span');
-    employmentType.textContent = firstItem.employmentType;
-
-    const dotSeparator2 = document.createElement('span');
-    dotSeparator2.textContent = '.';
-
-    const location = document.createElement('span');
-    location.textContent = firstItem.location;
-
-    // Append the date time and location elements to the div
-    dateTimeLocationDiv.appendChild(date);
-    dateTimeLocationDiv.appendChild(dotSeparator1);
-    dateTimeLocationDiv.appendChild(employmentType);
-    dateTimeLocationDiv.appendChild(dotSeparator2);
-    dateTimeLocationDiv.appendChild(location);
-
-    // Append the date time and location div to the job description div
-    jobDescriptionDiv.appendChild(dateTimeLocationDiv);
-
-    // Append the job description div to the left column div
-    leftColumnDiv.appendChild(jobDescriptionDiv);
-
-    // Create the horizontal rule elementconst hrElement = document.createElement('hr');
-    hrElement.className = 'bg-neutral-darkGrayishCyan';
-
-    // Append the horizontal rule element to the left column div
-    leftColumnDiv.appendChild(hrElement);
-
-    // Append the left column div to the card div
-    cardDiv.appendChild(leftColumnDiv);
-
-    // Create the right column div
-    const rightColumnDiv = document.createElement('div');
-    rightColumnDiv.className = 'flex justify-start items-center gap-2 md:justify-end';
-
-    // Create the tags container div
-    const tagsContainerDiv = document.createElement('div');
-
-    // Create and append the tags elements
-    firstItem.tags.forEach(tag => {
-      const tagElement = document.createElement('span');
-      tagElement.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 rounded-md cursor-pointer';
-      tagElement.textContent = tag;
-      tagsContainerDiv.appendChild(tagElement);
+      container.appendChild(cardContainer);
     });
-
-    // Append the tags container div to the right column div
-    rightColumnDiv.appendChild(tagsContainerDiv);
-
-    // Append the right column div to the card div
-    cardDiv.appendChild(rightColumnDiv);
-
-    // Append the card div to the main container div
-    mainContainer.appendChild(cardDiv);
-
-    // Append the main container div to the data container element
-    container.appendChild(mainContainer);
   })
   .catch(error => {
     console.log('Error:', error);
