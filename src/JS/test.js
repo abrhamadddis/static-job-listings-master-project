@@ -105,41 +105,39 @@ fetch("./data.json")
 
         // Right column
         const rightColumn = document.createElement('div');
-        rightColumn.className = 'flex justify-start items-center  md:justify-end';
+        rightColumn.className = 'flex  items-center flex-wrap w-full md:justify-end';
         mainCard.appendChild(rightColumn);
 
         //role
         const roleJob = document.createElement('span');
-        roleJob.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mb-2 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
+        roleJob.className = ' filterChar font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mb-2 mr-4 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
         roleJob.textContent = role;
         rightColumn.appendChild(roleJob);
 
         //level
         const levelJob = document.createElement('span');
-        levelJob.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mb-2 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
+        levelJob.className = ' filterChar font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mb-2 mr-4 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
         levelJob.textContent = level;
         rightColumn.appendChild(levelJob)
 
         //languages
         languages.forEach(language => {
             const languageTag = document.createElement('span');
-            languageTag.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mb-2 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
+            languageTag.className = ' filterChar font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mr-4 mb-2 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
             languageTag.textContent = language;
             rightColumn.appendChild(languageTag)
-        })
+        });
         
         //tools
         tools.forEach(tool => {
             const toolTag = document.createElement('span');
-            toolTag.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mb-2 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
+            toolTag.className = ' filterChar font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mb-2 mr-4 rounded-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
             toolTag.textContent = tool;
             rightColumn.appendChild(toolTag);
-        })
+        });
+
         
-
-        // const jobTags = document.createElement('div');
-        // rightColumn.appendChild(jobTags);
-
+        
     });
 
 
@@ -148,3 +146,57 @@ fetch("./data.json")
 .catch(error => {
     console.log('Error:', error);
 });
+
+    // adding elemnt in serach bar
+
+    const filterdCont = document.getElementById('searchBar');
+    const eachItem = document.createElement('div');
+    eachItem.className = 'flex p-10';
+    filterdCont.appendChild(eachItem);
+
+    //when we click filter chat the serch bar will be displayed
+
+    
+
+    const containerSearch = document.getElementById('dataContainer');
+// const filterTag = containerSearch.querySelector('.filterChar');
+    const searchBarCont = document.getElementById('searchBarCont');
+    
+    let  filterArray = [];
+    const diplaySerch = (event) => {
+        if(event.target.matches('#dataContainer .filterChar')){
+            const text = event.target.textContent;
+            
+            console.log("clicked");
+            searchBarCont.classList.remove('hidden');
+            searchBarCont.classList.add('flex');
+            console.log(filterArray)
+           
+            if (!filterArray.includes(text)){
+                filterArray.push(text);
+                
+                //span in search bar
+   
+                const selectedItem = document.createElement('span');
+                selectedItem.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 py-1 rounded-l-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
+                selectedItem.textContent = event.target.textContent;
+                eachItem.appendChild(selectedItem);
+    
+                const iconRemoveCon = document.createElement('div');
+                iconRemoveCon.className = 'flex';
+                eachItem.appendChild(iconRemoveCon);
+    
+                const iconeRemove = document.createElement('img');
+                iconeRemove.classList = 'bg-primary-desaturatedDarkCyan hover:bg-veryDarkGrayishCyan object-contain rounded-r-md px-2 py-2';
+                iconeRemove.src = "./images/icon-remove.svg";
+                iconRemoveCon.appendChild(iconeRemove);
+            }
+             
+            }
+            
+       
+        
+    }
+   
+    containerSearch.addEventListener('click', diplaySerch);
+
