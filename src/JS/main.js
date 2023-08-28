@@ -5,12 +5,13 @@ const fetchJobs = () => {
       const container = document.getElementById('dataContainer');
 
       data.forEach(card => {
+        
         const { logo, company, isnew, featured, position, postedAt, contract, location, languages, tools } = card;
 
         // Create card container
         const cardContainer = document.createElement('div');
         cardContainer.className = 'flex flex-col px-10 py-8 my-12 w-full justify-center rounded-md bg-white md:flex-row md:justify-between shadow-lg border-l-4 border-primary-desaturatedDarkCyan';
-
+        
         // Create left column
         const leftColumn = document.createElement('div');
         leftColumn.className = 'flex flex-col md:flex-row';
