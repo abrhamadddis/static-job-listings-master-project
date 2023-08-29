@@ -196,11 +196,10 @@ function filterCards(filterArray) {
     //when we click filter chat the serch bar will be displayed
 
     const containerSearch = document.getElementById('dataContainer');
-// const filterTag = containerSearch.querySelector('.filterChar');
     const searchBarCont = document.getElementById('searchBarCont');
     
     let  filterArray = [];
-    const diplaySerch = (event) => {
+    const displaySearch = (event) => {
         if(event.target.matches('#dataContainer .filterChar')){
             const text = event.target.textContent;
             
@@ -235,6 +234,14 @@ function filterCards(filterArray) {
        
         
     }
-   
-    containerSearch.addEventListener('click', diplaySerch);
+    containerSearch.addEventListener('click', displaySearch);
 
+// clearing the serach bar
+    const clearbtn = document.getElementById('clearbtn');
+    const cleardBar = document. getElementById('searchBar');
+
+    clearbtn.addEventListener('click', () => {
+        cleardBar.innerHTML = "";
+        landingLook();
+
+    })
