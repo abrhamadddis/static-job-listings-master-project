@@ -30,8 +30,11 @@ function createCard(card) {
     const { logo, company, isnew, featured, position, postedAt, contract, location, role, level, languages, tools } = card;
             // main card 
             const mainCard = document.createElement('div');
-            mainCard.className = 'flex flex-col px-10 py-8 my-12 w-full justify-center rounded-md bg-white md:flex-row md:justify-between shadow-lg border-l-4 border-primary-desaturatedDarkCyan';
-            
+            mainCard.className = 'flex flex-col pl-10 py-8 my-12 w-full  rounded-md bg-white md:flex-row md:justify-between shadow-lg';
+            if(featured){
+                mainCard.classList.add("border-l-4", "border-primary-desaturatedDarkCyan");
+
+            }
     
             //left column
             const leftColumn = document.createElement('div');
@@ -40,7 +43,7 @@ function createCard(card) {
     
             // Image of job
             const imageContainer = document.createElement('div');
-            imageContainer.className = 'mr-7 -mt-14 w-16 md:mt-0 md:w-24';
+            imageContainer.className = 'mr-2 -mt-14 w-16 md:mt-0 md:w-24';
             const image = document.createElement('img');
             image.src = logo;
             image.alt = company;
@@ -49,12 +52,12 @@ function createCard(card) {
     
             // Job description
             const jobDescription = document.createElement('div');
-            jobDescription.className = 'flex flex-col justify-center';
+            jobDescription.className = 'flex flex-col ';
             leftColumn.appendChild(jobDescription);
     
             // Company title and tags
             const companyTags = document.createElement('div');
-            companyTags.className = 'flex flex-wrap';
+            companyTags.className = 'flex items-center';
             jobDescription.appendChild(companyTags);
     
             const companyTitle = document.createElement('h3');
@@ -79,7 +82,7 @@ function createCard(card) {
             
             // Job title
             const jobTitle = document.createElement('h2');
-            jobTitle.className = 'font-sans font-bold hover:text-primary-desaturatedDarkCyan px-2 py-1 rounded-xl text-xl self-start';
+            jobTitle.className = 'font-sans font-bold hover:text-primary-desaturatedDarkCyan py-1 rounded-xl text-xl';
             jobTitle.textContent = position;
             jobDescription.appendChild(jobTitle);
     
@@ -109,10 +112,16 @@ function createCard(card) {
             const jobLocation = document.createElement('span');
             jobLocation.textContent = location;
             dateTimeLocation.appendChild(jobLocation);
+
+            // breaking line
+            const lineBreak = document.createElement('hr');
+            lineBreak.className = "py-3 mt-3 w-11/12 md:hidden";
+            mainCard.appendChild(lineBreak);
+
     
             // Right column
             const rightColumn = document.createElement('div');
-            rightColumn.className = 'flex  items-center flex-wrap w-full md:justify-end';
+            rightColumn.className = 'flex justify-start flex-wrap items-center  md:flex-wrap';
             mainCard.appendChild(rightColumn);
     
             //role
@@ -186,20 +195,21 @@ function filterCards(filterArray) {
         });
 }
 
-    // adding elemnt in serach bar
-
-    const filterdCont = document.getElementById('searchBar');
-    const eachItem = document.createElement('div');
-    eachItem.className = 'flex p-10';
-    filterdCont.appendChild(eachItem);
+   
+    
 
     //when we click filter chat the serch bar will be displayed
 
+document.addEventListener("DOMContentLoaded", () => {
+     // adding elemnt in serach bar
+
+     const filterdCont = document.getElementById('searchBar');
+    
     const containerSearch = document.getElementById('dataContainer');
     const searchBarCont = document.getElementById('searchBarCont');
     
     let  filterArray = [];
-    const displaySearch = (event) => {
+    containerSearch.addEventListener('click', (event) => {
         if(event.target.matches('#dataContainer .filterChar')){
             const text = event.target.textContent;
             
@@ -211,21 +221,23 @@ function filterCards(filterArray) {
             if (!filterArray.includes(text)){
                 filterArray.push(text);
                 
+                const eachItem = document.createElement('div');
+                eachItem.className = 'flex';
                 //span in search bar
    
                 const selectedItem = document.createElement('span');
-                selectedItem.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 py-1 rounded-l-md cursor-pointer hover:text-white hover:bg-primary-desaturatedDarkCyan';
+                selectedItem.className = 'font-bold text-primary-desaturatedDarkCyan bg-neutral-lightGrayishCyan px-2 py-2 rounded-l-md ';
                 selectedItem.textContent = event.target.textContent;
-                eachItem.appendChild(selectedItem);
-    
-                const iconRemoveCon = document.createElement('div');
-                iconRemoveCon.className = 'flex';
-                eachItem.appendChild(iconRemoveCon);
+                
     
                 const iconeRemove = document.createElement('img');
-                iconeRemove.classList = 'bg-primary-desaturatedDarkCyan hover:bg-veryDarkGrayishCyan object-contain rounded-r-md px-2 py-2';
+                iconeRemove.classList = 'bg-primary-desaturatedDarkCyan hover:bg-neutral-veryDarkGrayishCyan  object-contain rounded-r-md px-3 py-2 cursor-pointer';
                 iconeRemove.src = "./images/icon-remove.svg";
-                iconRemoveCon.appendChild(iconeRemove);
+                
+                eachItem.appendChild(selectedItem);
+                eachItem.appendChild(iconeRemove);
+
+                filterdCont.appendChild(eachItem);
                 filterCards(filterArray);
             }
              
@@ -233,15 +245,65 @@ function filterCards(filterArray) {
             
        
         
-    }
-    containerSearch.addEventListener('click', displaySearch);
+        }) 
 
-// clearing the serach bar
+
+    
+    // clearing the serach bar
+
     const clearbtn = document.getElementById('clearbtn');
-    const cleardBar = document. getElementById('searchBar');
+    const cleardBar = document.getElementById('searchBarCont');
+    const listedCont = document.getElementById('searchBar');
+    const mainContener = document.getElementById('dataContainer');
 
     clearbtn.addEventListener('click', () => {
-        cleardBar.innerHTML = "";
+        
+        console.log("here"+ filterArray)
+        listedCont.innerHTML = "";
+        console.log('test '+ listedCont);
+        mainContener.innerHTML = "";
+        cleardBar.classList.remove('flex');
+        cleardBar.classList.add('hidden');
+        filterArray = [];
+        console.log("click" +filterArray)
         landingLook();
 
     })
+
+
+    // remove filter tag one by one
+   const listTags = document.getElementById("searchBarCont");
+
+   listTags.addEventListener("click", (event) =>{
+    if(event.target.matches("#searchBarCont img")){
+
+        const buttonText = event.target.previousSibling.textContent.trim();
+        
+        event.target.parentElement.remove();
+
+        const index = filterArray.indexOf(buttonText);
+        if (index !== -1){
+            filterArray.splice(index, 1);
+        }
+
+        if(filterArray.length === 0){
+            const filterCase = document.getElementById("searchBarCont");
+            filterCase.classList.remove("flex");
+            filterCase.classList.add("hidden");
+            landingLook();
+        }else{
+            filterCards(filterArray);
+        }
+    }
+   })
+})
+  
+    
+
+
+
+
+
+
+
+

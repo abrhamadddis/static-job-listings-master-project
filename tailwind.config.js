@@ -10,8 +10,8 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        bgHeaderDesktop: "url('../images/bg-header-desktop.svg')" ,
-        bgHeaderMobile: "url('../images/bg-header-mobile.svg')",
+        bgHeaderDesktop: "url('/src/images/bg-header-desktop.svg')" ,
+        bgHeaderMobile: "url('/src/images/bg-header-mobile.svg')",
       },
       colors: {
         primary:{
