@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.html", "./src/**/*.js"],
+  content: ["./**/*.html", "./**/*.js"],
   theme: {
     screens: {
       sm: "480px",
@@ -10,8 +10,8 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        bgHeaderDesktop: "url('/src/images/bg-header-desktop.svg')" ,
-        bgHeaderMobile: "url('/src/images/bg-header-mobile.svg')",
+        bgHeaderDesktop: "url('/images/bg-header-desktop.svg')" ,
+        bgHeaderMobile: "url('/images/bg-header-mobile.svg')",
       },
       colors: {
         primary:{
