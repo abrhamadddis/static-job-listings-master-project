@@ -1,8 +1,8 @@
 // landingLook
 landingLook();
 function landingLook(){
-    fetch("./data.json")
-    .then(response => response.json())
+    axios("https://my.api.mockaroo.com/static_job_listings.json?key=58c17e00")
+    .then(response => response.data)
     .then(data=> {
         console.log(data);
         // to sort json so that the featured appear on the top of the other job
@@ -166,8 +166,8 @@ function mergeTags(card) {
 
 
 function filterCards(filterArray) {
-    fetch('./data.json')
-        .then(response => response.json())
+    axios('https://my.api.mockaroo.com/static_job_listings.json?key=58c17e00')
+        .then(response => response.data)
         .then(data => {
             data.sort((a, b) => {
                 if (a.featured && !b.featured) {
