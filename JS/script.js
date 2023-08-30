@@ -1,7 +1,7 @@
 // landingLook
 landingLook();
 function landingLook(){
-    axios("https://my.api.mockaroo.com/static_job_listings.json?key=58c17e00")
+    axios("https://my.api.mockaroo.com/static_job_listings.json?key=bda6ece0")
     .then(response => response.data)
     .then(data=> {
         console.log(data);
@@ -43,7 +43,7 @@ function createCard(card) {
     
             // Image of job
             const imageContainer = document.createElement('div');
-            imageContainer.className = 'mr-2  -mt-14 w-16 md:mt-0 md:w-24';
+            imageContainer.className = 'mr-2 rounded-full -mt-14 w-16 md:mt-0 md:w-24';
             const image = document.createElement('img');
             image.className = 'rounded-full';
             image.src = logo;
@@ -167,7 +167,7 @@ function mergeTags(card) {
 
 
 function filterCards(filterArray) {
-    axios('https://my.api.mockaroo.com/static_job_listings.json?key=58c17e00')
+    axios('https://my.api.mockaroo.com/static_job_listings.json?key=bda6ece0')
         .then(response => response.data)
         .then(data => {
             data.sort((a, b) => {
