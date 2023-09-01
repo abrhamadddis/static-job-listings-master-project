@@ -1,8 +1,8 @@
 // landingLook
 landingLook();
 function landingLook(){
-    fetch("./data.json")
-    .then(response => response.json())
+    axios("https://my.api.mockaroo.com/static_job_listings.json?key=bda6ece0")
+    .then(response => response.data)
     .then(data=> {
         console.log(data);
         // to sort json so that the featured appear on the top of the other job
@@ -43,8 +43,9 @@ function createCard(card) {
     
             // Image of job
             const imageContainer = document.createElement('div');
-            imageContainer.className = 'mr-2 -mt-14 w-16 md:mt-0 md:w-24';
+            imageContainer.className = 'mr-2 rounded-full -mt-14 w-16 md:mt-0 md:w-24';
             const image = document.createElement('img');
+            image.className = 'rounded-full';
             image.src = logo;
             image.alt = company;
             imageContainer.appendChild(image);
@@ -166,8 +167,8 @@ function mergeTags(card) {
 
 
 function filterCards(filterArray) {
-    fetch('./data.json')
-        .then(response => response.json())
+    axios('https://my.api.mockaroo.com/static_job_listings.json?key=bda6ece0')
+        .then(response => response.data)
         .then(data => {
             data.sort((a, b) => {
                 if (a.featured && !b.featured) {
